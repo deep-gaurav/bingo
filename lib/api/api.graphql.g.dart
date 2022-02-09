@@ -30,6 +30,15 @@ Map<String, dynamic> _$Disconnect$MutationRootToJson(
       'disconnect': instance.disconnect,
     };
 
+Ping$QueryRoot _$Ping$QueryRootFromJson(Map<String, dynamic> json) {
+  return Ping$QueryRoot()..ping = json['ping'] as String;
+}
+
+Map<String, dynamic> _$Ping$QueryRootToJson(Ping$QueryRoot instance) =>
+    <String, dynamic>{
+      'ping': instance.ping,
+    };
+
 BingoStartGame$QueryRoot$GameInputs$BingoInputs
     _$BingoStartGame$QueryRoot$GameInputs$BingoInputsFromJson(
         Map<String, dynamic> json) {
@@ -225,6 +234,204 @@ Map<String, dynamic> _$BoxesPlayerMov$QueryRootToJson(
       'gameEvent': instance.gameEvent.toJson(),
     };
 
+BluffStartGame$QueryRoot$GameInputs$BluffInputs
+    _$BluffStartGame$QueryRoot$GameInputs$BluffInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffStartGame$QueryRoot$GameInputs$BluffInputs()
+    ..startGame = json['startGame'] as bool;
+}
+
+Map<String, dynamic> _$BluffStartGame$QueryRoot$GameInputs$BluffInputsToJson(
+        BluffStartGame$QueryRoot$GameInputs$BluffInputs instance) =>
+    <String, dynamic>{
+      'startGame': instance.startGame,
+    };
+
+BluffStartGame$QueryRoot$GameInputs
+    _$BluffStartGame$QueryRoot$GameInputsFromJson(Map<String, dynamic> json) {
+  return BluffStartGame$QueryRoot$GameInputs()
+    ..bluffInputs = BluffStartGame$QueryRoot$GameInputs$BluffInputs.fromJson(
+        json['bluffInputs'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffStartGame$QueryRoot$GameInputsToJson(
+        BluffStartGame$QueryRoot$GameInputs instance) =>
+    <String, dynamic>{
+      'bluffInputs': instance.bluffInputs.toJson(),
+    };
+
+BluffStartGame$QueryRoot _$BluffStartGame$QueryRootFromJson(
+    Map<String, dynamic> json) {
+  return BluffStartGame$QueryRoot()
+    ..gameEvent = BluffStartGame$QueryRoot$GameInputs.fromJson(
+        json['gameEvent'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffStartGame$QueryRootToJson(
+        BluffStartGame$QueryRoot instance) =>
+    <String, dynamic>{
+      'gameEvent': instance.gameEvent.toJson(),
+    };
+
+BluffPlayerPass$QueryRoot$GameInputs$BluffInputs
+    _$BluffPlayerPass$QueryRoot$GameInputs$BluffInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffPlayerPass$QueryRoot$GameInputs$BluffInputs()
+    ..pass = json['pass'] as bool;
+}
+
+Map<String, dynamic> _$BluffPlayerPass$QueryRoot$GameInputs$BluffInputsToJson(
+        BluffPlayerPass$QueryRoot$GameInputs$BluffInputs instance) =>
+    <String, dynamic>{
+      'pass': instance.pass,
+    };
+
+BluffPlayerPass$QueryRoot$GameInputs
+    _$BluffPlayerPass$QueryRoot$GameInputsFromJson(Map<String, dynamic> json) {
+  return BluffPlayerPass$QueryRoot$GameInputs()
+    ..bluffInputs = BluffPlayerPass$QueryRoot$GameInputs$BluffInputs.fromJson(
+        json['bluffInputs'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerPass$QueryRoot$GameInputsToJson(
+        BluffPlayerPass$QueryRoot$GameInputs instance) =>
+    <String, dynamic>{
+      'bluffInputs': instance.bluffInputs.toJson(),
+    };
+
+BluffPlayerPass$QueryRoot _$BluffPlayerPass$QueryRootFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerPass$QueryRoot()
+    ..gameEvent = BluffPlayerPass$QueryRoot$GameInputs.fromJson(
+        json['gameEvent'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerPass$QueryRootToJson(
+        BluffPlayerPass$QueryRoot instance) =>
+    <String, dynamic>{
+      'gameEvent': instance.gameEvent.toJson(),
+    };
+
+BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs
+    _$BluffPlayerFlip$QueryRoot$GameInputs$BluffInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs()
+    ..flip = json['flip'] as bool;
+}
+
+Map<String, dynamic> _$BluffPlayerFlip$QueryRoot$GameInputs$BluffInputsToJson(
+        BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs instance) =>
+    <String, dynamic>{
+      'flip': instance.flip,
+    };
+
+BluffPlayerFlip$QueryRoot$GameInputs
+    _$BluffPlayerFlip$QueryRoot$GameInputsFromJson(Map<String, dynamic> json) {
+  return BluffPlayerFlip$QueryRoot$GameInputs()
+    ..bluffInputs = BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs.fromJson(
+        json['bluffInputs'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerFlip$QueryRoot$GameInputsToJson(
+        BluffPlayerFlip$QueryRoot$GameInputs instance) =>
+    <String, dynamic>{
+      'bluffInputs': instance.bluffInputs.toJson(),
+    };
+
+BluffPlayerFlip$QueryRoot _$BluffPlayerFlip$QueryRootFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerFlip$QueryRoot()
+    ..gameEvent = BluffPlayerFlip$QueryRoot$GameInputs.fromJson(
+        json['gameEvent'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerFlip$QueryRootToJson(
+        BluffPlayerFlip$QueryRoot instance) =>
+    <String, dynamic>{
+      'gameEvent': instance.gameEvent.toJson(),
+    };
+
+BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs
+    _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs()
+    ..voteRoundEnd = json['voteRoundEnd'] as bool;
+}
+
+Map<String,
+    dynamic> _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputsToJson(
+        BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs instance) =>
+    <String, dynamic>{
+      'voteRoundEnd': instance.voteRoundEnd,
+    };
+
+BluffPlayerVoteRoundEnd$QueryRoot$GameInputs
+    _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffPlayerVoteRoundEnd$QueryRoot$GameInputs()
+    ..bluffInputs =
+        BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs.fromJson(
+            json['bluffInputs'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputsToJson(
+        BluffPlayerVoteRoundEnd$QueryRoot$GameInputs instance) =>
+    <String, dynamic>{
+      'bluffInputs': instance.bluffInputs.toJson(),
+    };
+
+BluffPlayerVoteRoundEnd$QueryRoot _$BluffPlayerVoteRoundEnd$QueryRootFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerVoteRoundEnd$QueryRoot()
+    ..gameEvent = BluffPlayerVoteRoundEnd$QueryRoot$GameInputs.fromJson(
+        json['gameEvent'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerVoteRoundEnd$QueryRootToJson(
+        BluffPlayerVoteRoundEnd$QueryRoot instance) =>
+    <String, dynamic>{
+      'gameEvent': instance.gameEvent.toJson(),
+    };
+
+BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs
+    _$BluffPlayerDeal$QueryRoot$GameInputs$BluffInputsFromJson(
+        Map<String, dynamic> json) {
+  return BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs()
+    ..deal = json['deal'] as bool;
+}
+
+Map<String, dynamic> _$BluffPlayerDeal$QueryRoot$GameInputs$BluffInputsToJson(
+        BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs instance) =>
+    <String, dynamic>{
+      'deal': instance.deal,
+    };
+
+BluffPlayerDeal$QueryRoot$GameInputs
+    _$BluffPlayerDeal$QueryRoot$GameInputsFromJson(Map<String, dynamic> json) {
+  return BluffPlayerDeal$QueryRoot$GameInputs()
+    ..bluffInputs = BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs.fromJson(
+        json['bluffInputs'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerDeal$QueryRoot$GameInputsToJson(
+        BluffPlayerDeal$QueryRoot$GameInputs instance) =>
+    <String, dynamic>{
+      'bluffInputs': instance.bluffInputs.toJson(),
+    };
+
+BluffPlayerDeal$QueryRoot _$BluffPlayerDeal$QueryRootFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerDeal$QueryRoot()
+    ..gameEvent = BluffPlayerDeal$QueryRoot$GameInputs.fromJson(
+        json['gameEvent'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$BluffPlayerDeal$QueryRootToJson(
+        BluffPlayerDeal$QueryRoot instance) =>
+    <String, dynamic>{
+      'gameEvent': instance.gameEvent.toJson(),
+    };
+
 JoinLobby$MutationRoot _$JoinLobby$MutationRootFromJson(
     Map<String, dynamic> json) {
   return JoinLobby$MutationRoot()..joinLobby = json['joinLobby'] as String;
@@ -234,15 +441,6 @@ Map<String, dynamic> _$JoinLobby$MutationRootToJson(
         JoinLobby$MutationRoot instance) =>
     <String, dynamic>{
       'joinLobby': instance.joinLobby,
-    };
-
-Ping$QueryRoot _$Ping$QueryRootFromJson(Map<String, dynamic> json) {
-  return Ping$QueryRoot()..ping = json['ping'] as String;
-}
-
-Map<String, dynamic> _$Ping$QueryRootToJson(Ping$QueryRoot instance) =>
-    <String, dynamic>{
-      'ping': instance.ping,
     };
 
 RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BingoPlayerData$Board
@@ -301,6 +499,99 @@ Map<String, dynamic>
           '__typename': instance.$$typename,
           'color': instance.color,
           'score': instance.score,
+        };
+
+RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card
+    _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$CardFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card()
+    ..color = _$enumDecode(_$CardColorEnumMap, json['color'],
+        unknownValue: CardColor.artemisUnknown)
+    ..number = _$enumDecode(_$CardNumEnumMap, json['number'],
+        unknownValue: CardNum.artemisUnknown);
+}
+
+Map<String, dynamic>
+    _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$CardToJson(
+            RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card
+                instance) =>
+        <String, dynamic>{
+          'color': _$CardColorEnumMap[instance.color],
+          'number': _$CardNumEnumMap[instance.number],
+        };
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+const _$CardColorEnumMap = {
+  CardColor.spade: 'SPADE',
+  CardColor.heart: 'HEART',
+  CardColor.club: 'CLUB',
+  CardColor.diamond: 'DIAMOND',
+  CardColor.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+const _$CardNumEnumMap = {
+  CardNum.ace: 'ACE',
+  CardNum.two: 'TWO',
+  CardNum.three: 'THREE',
+  CardNum.four: 'FOUR',
+  CardNum.five: 'FIVE',
+  CardNum.six: 'SIX',
+  CardNum.seven: 'SEVEN',
+  CardNum.eight: 'EIGHT',
+  CardNum.nine: 'NINE',
+  CardNum.ten: 'TEN',
+  CardNum.jack: 'JACK',
+  CardNum.queen: 'QUEEN',
+  CardNum.king: 'KING',
+  CardNum.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData
+    _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerDataFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData()
+    ..$$typename = json['__typename'] as String?
+    ..endTurnRaised = json['endTurnRaised'] as bool
+    ..cards = (json['cards'] as List<dynamic>)
+        .map((e) =>
+            RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card
+                .fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic>
+    _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerDataToJson(
+            RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$$typename,
+          'endTurnRaised': instance.endTurnRaised,
+          'cards': instance.cards.map((e) => e.toJson()).toList(),
         };
 
 RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData
@@ -619,6 +910,48 @@ Map<String, dynamic>
           'color': instance.color,
         };
 
+RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card
+    _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$CardFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card()
+    ..color = _$enumDecode(_$CardColorEnumMap, json['color'],
+        unknownValue: CardColor.artemisUnknown)
+    ..number = _$enumDecode(_$CardNumEnumMap, json['number'],
+        unknownValue: CardNum.artemisUnknown);
+}
+
+Map<String, dynamic>
+    _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$CardToJson(
+            RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card
+                instance) =>
+        <String, dynamic>{
+          'color': _$CardColorEnumMap[instance.color],
+          'number': _$CardNumEnumMap[instance.number],
+        };
+
+RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData
+    _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerDataFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData()
+    ..$$typename = json['__typename'] as String?
+    ..cards = (json['cards'] as List<dynamic>)
+        .map((e) =>
+            RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card
+                .fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..endTurnRaised = json['endTurnRaised'] as bool;
+}
+
+Map<String, dynamic>
+    _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerDataToJson(
+            RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$$typename,
+          'cards': instance.cards.map((e) => e.toJson()).toList(),
+          'endTurnRaised': instance.endTurnRaised,
+        };
+
 RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData
     _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameDataFromJson(
         Map<String, dynamic> json) {
@@ -843,6 +1176,60 @@ Map<String, dynamic> _$RoomFieldsMixin$RoomState$GameData$Game$BoxesToJson(
           instance.horizontalEdges.map((e) => e.toJson()).toList(),
       'verticalEdges': instance.verticalEdges.map((e) => e.toJson()).toList(),
       'cells': instance.cells.map((e) => e.toJson()).toList(),
+    };
+
+RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card
+    _$RoomFieldsMixin$RoomState$GameData$Game$Bluff$CardFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card()
+    ..color = _$enumDecode(_$CardColorEnumMap, json['color'],
+        unknownValue: CardColor.artemisUnknown)
+    ..number = _$enumDecode(_$CardNumEnumMap, json['number'],
+        unknownValue: CardNum.artemisUnknown);
+}
+
+Map<String, dynamic> _$RoomFieldsMixin$RoomState$GameData$Game$Bluff$CardToJson(
+        RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card instance) =>
+    <String, dynamic>{
+      'color': _$CardColorEnumMap[instance.color],
+      'number': _$CardNumEnumMap[instance.number],
+    };
+
+RoomFieldsMixin$RoomState$GameData$Game$Bluff
+    _$RoomFieldsMixin$RoomState$GameData$Game$BluffFromJson(
+        Map<String, dynamic> json) {
+  return RoomFieldsMixin$RoomState$GameData$Game$Bluff()
+    ..$$typename = json['__typename'] as String?
+    ..turn = json['turn'] as String
+    ..roundPlayer = json['roundPlayer'] as String
+    ..claimedCard = json['claimedCard'] == null
+        ? null
+        : RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card.fromJson(
+            json['claimedCard'] as Map<String, dynamic>)
+    ..deck = (json['deck'] as List<dynamic>)
+        .map((e) => RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card.fromJson(
+            e as Map<String, dynamic>))
+        .toList()
+    ..centeredCard = (json['centeredCard'] as List<dynamic>)
+        .map((e) => (e as List<dynamic>)
+            .map((e) =>
+                RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card.fromJson(
+                    e as Map<String, dynamic>))
+            .toList())
+        .toList();
+}
+
+Map<String, dynamic> _$RoomFieldsMixin$RoomState$GameData$Game$BluffToJson(
+        RoomFieldsMixin$RoomState$GameData$Game$Bluff instance) =>
+    <String, dynamic>{
+      '__typename': instance.$$typename,
+      'turn': instance.turn,
+      'roundPlayer': instance.roundPlayer,
+      'claimedCard': instance.claimedCard?.toJson(),
+      'deck': instance.deck.map((e) => e.toJson()).toList(),
+      'centeredCard': instance.centeredCard
+          .map((e) => e.map((e) => e.toJson()).toList())
+          .toList(),
     };
 
 RoomFieldsMixin$RoomState$GameData$Game
@@ -1412,6 +1799,87 @@ Map<String, dynamic> _$BoxesPlayerMovArgumentsToJson(
       'playerId': instance.playerId,
       'roomId': instance.roomId,
       'edgeId': instance.edgeId,
+    };
+
+BluffStartGameArguments _$BluffStartGameArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return BluffStartGameArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+    seed: json['seed'] as int,
+  );
+}
+
+Map<String, dynamic> _$BluffStartGameArgumentsToJson(
+        BluffStartGameArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+      'seed': instance.seed,
+    };
+
+BluffPlayerPassArguments _$BluffPlayerPassArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerPassArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+  );
+}
+
+Map<String, dynamic> _$BluffPlayerPassArgumentsToJson(
+        BluffPlayerPassArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+    };
+
+BluffPlayerFlipArguments _$BluffPlayerFlipArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerFlipArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+  );
+}
+
+Map<String, dynamic> _$BluffPlayerFlipArgumentsToJson(
+        BluffPlayerFlipArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+    };
+
+BluffPlayerVoteRoundEndArguments _$BluffPlayerVoteRoundEndArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerVoteRoundEndArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+  );
+}
+
+Map<String, dynamic> _$BluffPlayerVoteRoundEndArgumentsToJson(
+        BluffPlayerVoteRoundEndArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+    };
+
+BluffPlayerDealArguments _$BluffPlayerDealArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return BluffPlayerDealArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+    cards: (json['cards'] as List<dynamic>).map((e) => e as int).toList(),
+    claim: json['claim'] as int,
+  );
+}
+
+Map<String, dynamic> _$BluffPlayerDealArgumentsToJson(
+        BluffPlayerDealArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+      'cards': instance.cards,
+      'claim': instance.claim,
     };
 
 JoinLobbyArguments _$JoinLobbyArgumentsFromJson(Map<String, dynamic> json) {

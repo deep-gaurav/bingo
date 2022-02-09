@@ -46,3 +46,45 @@ query boxesPlayerMov($playerId: String!, $roomId: String!, $edgeId: Int!) {
     }
   }
 }
+
+query bluffStartGame($playerId: String!, $roomId: String!, $seed: Int!) {
+  gameEvent(playerId: $playerId, roomId: $roomId) {
+    bluffInputs {
+      startGame(seed: $seed)
+    }
+  }
+}
+
+query bluffPlayerPass($playerId: String!, $roomId: String!) {
+  gameEvent(playerId: $playerId, roomId: $roomId) {
+    bluffInputs {
+      pass
+    }
+  }
+}
+query bluffPlayerFlip($playerId: String!, $roomId: String!) {
+  gameEvent(playerId: $playerId, roomId: $roomId) {
+    bluffInputs {
+      flip
+    }
+  }
+}
+query bluffPlayerVoteRoundEnd($playerId: String!, $roomId: String!) {
+  gameEvent(playerId: $playerId, roomId: $roomId) {
+    bluffInputs {
+      voteRoundEnd
+    }
+  }
+}
+query bluffPlayerDeal(
+  $playerId: String!
+  $roomId: String!
+  $cards: [Int!]!
+  $claim: Int!
+) {
+  gameEvent(playerId: $playerId, roomId: $roomId) {
+    bluffInputs {
+      deal(cards: $cards, claim: $claim)
+    }
+  }
+}

@@ -9,6 +9,8 @@ typedef BingoPlayerData
     = RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BingoPlayerData;
 typedef BoxesPlayerData
     = RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BoxesPlayerData;
+typedef BluffPlayerData
+    = RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData;
 
 extension HexColor on Color {
   static Color getColorFromHex(String hexColor) {
@@ -129,6 +131,9 @@ Color getStatusColor(RoomFieldsMixin$CommonPlayer player) {
       return Colors.grey;
     } else if (player.data is BingoPlayerData &&
         (player.data as BingoPlayerData).board == null) {
+      return Colors.orange;
+    } else if (player.data is BluffPlayerData &&
+        (player.data as BluffPlayerData).endTurnRaised) {
       return Colors.orange;
     } else {
       return Colors.green;

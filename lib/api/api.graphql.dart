@@ -19,6 +19,12 @@ mixin OccupiedMixin {
 mixin UnoccupiedMixin {
   late int id;
 }
+mixin CardFieldsMixin {
+  @JsonKey(unknownEnumValue: CardColor.artemisUnknown)
+  late CardColor color;
+  @JsonKey(unknownEnumValue: CardNum.artemisUnknown)
+  late CardNum number;
+}
 mixin RoomFieldsMixin {
   late String id;
   late List<RoomFieldsMixin$CommonPlayer> players;
@@ -53,6 +59,21 @@ class Disconnect$MutationRoot extends JsonSerializable with EquatableMixin {
   List<Object?> get props => [disconnect];
   @override
   Map<String, dynamic> toJson() => _$Disconnect$MutationRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Ping$QueryRoot extends JsonSerializable with EquatableMixin {
+  Ping$QueryRoot();
+
+  factory Ping$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$Ping$QueryRootFromJson(json);
+
+  late String ping;
+
+  @override
+  List<Object?> get props => [ping];
+  @override
+  Map<String, dynamic> toJson() => _$Ping$QueryRootToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -311,6 +332,264 @@ class BoxesPlayerMov$QueryRoot extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class BluffStartGame$QueryRoot$GameInputs$BluffInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffStartGame$QueryRoot$GameInputs$BluffInputs();
+
+  factory BluffStartGame$QueryRoot$GameInputs$BluffInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffStartGame$QueryRoot$GameInputs$BluffInputsFromJson(json);
+
+  late bool startGame;
+
+  @override
+  List<Object?> get props => [startGame];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffStartGame$QueryRoot$GameInputs$BluffInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffStartGame$QueryRoot$GameInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffStartGame$QueryRoot$GameInputs();
+
+  factory BluffStartGame$QueryRoot$GameInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffStartGame$QueryRoot$GameInputsFromJson(json);
+
+  late BluffStartGame$QueryRoot$GameInputs$BluffInputs bluffInputs;
+
+  @override
+  List<Object?> get props => [bluffInputs];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffStartGame$QueryRoot$GameInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffStartGame$QueryRoot extends JsonSerializable with EquatableMixin {
+  BluffStartGame$QueryRoot();
+
+  factory BluffStartGame$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$BluffStartGame$QueryRootFromJson(json);
+
+  late BluffStartGame$QueryRoot$GameInputs gameEvent;
+
+  @override
+  List<Object?> get props => [gameEvent];
+  @override
+  Map<String, dynamic> toJson() => _$BluffStartGame$QueryRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerPass$QueryRoot$GameInputs$BluffInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerPass$QueryRoot$GameInputs$BluffInputs();
+
+  factory BluffPlayerPass$QueryRoot$GameInputs$BluffInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerPass$QueryRoot$GameInputs$BluffInputsFromJson(json);
+
+  late bool pass;
+
+  @override
+  List<Object?> get props => [pass];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerPass$QueryRoot$GameInputs$BluffInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerPass$QueryRoot$GameInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerPass$QueryRoot$GameInputs();
+
+  factory BluffPlayerPass$QueryRoot$GameInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerPass$QueryRoot$GameInputsFromJson(json);
+
+  late BluffPlayerPass$QueryRoot$GameInputs$BluffInputs bluffInputs;
+
+  @override
+  List<Object?> get props => [bluffInputs];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerPass$QueryRoot$GameInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerPass$QueryRoot extends JsonSerializable with EquatableMixin {
+  BluffPlayerPass$QueryRoot();
+
+  factory BluffPlayerPass$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerPass$QueryRootFromJson(json);
+
+  late BluffPlayerPass$QueryRoot$GameInputs gameEvent;
+
+  @override
+  List<Object?> get props => [gameEvent];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerPass$QueryRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs();
+
+  factory BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerFlip$QueryRoot$GameInputs$BluffInputsFromJson(json);
+
+  late bool flip;
+
+  @override
+  List<Object?> get props => [flip];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerFlip$QueryRoot$GameInputs$BluffInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerFlip$QueryRoot$GameInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerFlip$QueryRoot$GameInputs();
+
+  factory BluffPlayerFlip$QueryRoot$GameInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerFlip$QueryRoot$GameInputsFromJson(json);
+
+  late BluffPlayerFlip$QueryRoot$GameInputs$BluffInputs bluffInputs;
+
+  @override
+  List<Object?> get props => [bluffInputs];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerFlip$QueryRoot$GameInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerFlip$QueryRoot extends JsonSerializable with EquatableMixin {
+  BluffPlayerFlip$QueryRoot();
+
+  factory BluffPlayerFlip$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerFlip$QueryRootFromJson(json);
+
+  late BluffPlayerFlip$QueryRoot$GameInputs gameEvent;
+
+  @override
+  List<Object?> get props => [gameEvent];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerFlip$QueryRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs
+    extends JsonSerializable with EquatableMixin {
+  BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs();
+
+  factory BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputsFromJson(json);
+
+  late bool voteRoundEnd;
+
+  @override
+  List<Object?> get props => [voteRoundEnd];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerVoteRoundEnd$QueryRoot$GameInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerVoteRoundEnd$QueryRoot$GameInputs();
+
+  factory BluffPlayerVoteRoundEnd$QueryRoot$GameInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputsFromJson(json);
+
+  late BluffPlayerVoteRoundEnd$QueryRoot$GameInputs$BluffInputs bluffInputs;
+
+  @override
+  List<Object?> get props => [bluffInputs];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerVoteRoundEnd$QueryRoot$GameInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerVoteRoundEnd$QueryRoot extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerVoteRoundEnd$QueryRoot();
+
+  factory BluffPlayerVoteRoundEnd$QueryRoot.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerVoteRoundEnd$QueryRootFromJson(json);
+
+  late BluffPlayerVoteRoundEnd$QueryRoot$GameInputs gameEvent;
+
+  @override
+  List<Object?> get props => [gameEvent];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerVoteRoundEnd$QueryRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs();
+
+  factory BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerDeal$QueryRoot$GameInputs$BluffInputsFromJson(json);
+
+  late bool deal;
+
+  @override
+  List<Object?> get props => [deal];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerDeal$QueryRoot$GameInputs$BluffInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerDeal$QueryRoot$GameInputs extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerDeal$QueryRoot$GameInputs();
+
+  factory BluffPlayerDeal$QueryRoot$GameInputs.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerDeal$QueryRoot$GameInputsFromJson(json);
+
+  late BluffPlayerDeal$QueryRoot$GameInputs$BluffInputs bluffInputs;
+
+  @override
+  List<Object?> get props => [bluffInputs];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerDeal$QueryRoot$GameInputsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerDeal$QueryRoot extends JsonSerializable with EquatableMixin {
+  BluffPlayerDeal$QueryRoot();
+
+  factory BluffPlayerDeal$QueryRoot.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerDeal$QueryRootFromJson(json);
+
+  late BluffPlayerDeal$QueryRoot$GameInputs gameEvent;
+
+  @override
+  List<Object?> get props => [gameEvent];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerDeal$QueryRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class JoinLobby$MutationRoot extends JsonSerializable with EquatableMixin {
   JoinLobby$MutationRoot();
 
@@ -323,21 +602,6 @@ class JoinLobby$MutationRoot extends JsonSerializable with EquatableMixin {
   List<Object?> get props => [joinLobby];
   @override
   Map<String, dynamic> toJson() => _$JoinLobby$MutationRootToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Ping$QueryRoot extends JsonSerializable with EquatableMixin {
-  Ping$QueryRoot();
-
-  factory Ping$QueryRoot.fromJson(Map<String, dynamic> json) =>
-      _$Ping$QueryRootFromJson(json);
-
-  late String ping;
-
-  @override
-  List<Object?> get props => [ping];
-  @override
-  Map<String, dynamic> toJson() => _$Ping$QueryRootToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -408,6 +672,49 @@ class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BoxesPlayerData
 }
 
 @JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card
+    extends JsonSerializable with EquatableMixin, CardFieldsMixin {
+  RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card();
+
+  factory RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$CardFromJson(
+          json);
+
+  @override
+  List<Object?> get props => [color, number];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$CardToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData
+    extends RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData
+    with EquatableMixin {
+  RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData();
+
+  factory RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerDataFromJson(
+          json);
+
+  late bool endTurnRaised;
+
+  late List<
+          RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData$Card>
+      cards;
+
+  @override
+  List<Object?> get props => [endTurnRaised, cards];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerDataToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData
     extends JsonSerializable with EquatableMixin {
   RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData();
@@ -420,6 +727,9 @@ class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData
             .fromJson(json);
       case r'BoxesPlayerData':
         return RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BoxesPlayerData
+            .fromJson(json);
+      case r'BluffPlayerData':
+        return RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData
             .fromJson(json);
       default:
     }
@@ -442,6 +752,10 @@ class RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData
       case r'BoxesPlayerData':
         return (this
                 as RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BoxesPlayerData)
+            .toJson();
+      case r'BluffPlayerData':
+        return (this
+                as RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BluffPlayerData)
             .toJson();
       default:
     }
@@ -801,6 +1115,49 @@ class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BoxesPlayerDa
 }
 
 @JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card
+    extends JsonSerializable with EquatableMixin, CardFieldsMixin {
+  RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card();
+
+  factory RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$CardFromJson(
+          json);
+
+  @override
+  List<Object?> get props => [color, number];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$CardToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData
+    extends RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData
+    with EquatableMixin {
+  RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData();
+
+  factory RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerDataFromJson(
+          json);
+
+  late List<
+          RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData$Card>
+      cards;
+
+  late bool endTurnRaised;
+
+  @override
+  List<Object?> get props => [cards, endTurnRaised];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerDataToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData
     extends JsonSerializable with EquatableMixin {
   RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData();
@@ -813,6 +1170,9 @@ class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData
             .fromJson(json);
       case r'BoxesPlayerData':
         return RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BoxesPlayerData
+            .fromJson(json);
+      case r'BluffPlayerData':
+        return RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData
             .fromJson(json);
       default:
     }
@@ -835,6 +1195,10 @@ class RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData
       case r'BoxesPlayerData':
         return (this
                 as RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BoxesPlayerData)
+            .toJson();
+      case r'BluffPlayerData':
+        return (this
+                as RoomFieldsMixin$RoomState$GameData$GamePlayer$PlayerGameData$BluffPlayerData)
             .toJson();
       default:
     }
@@ -1124,6 +1488,50 @@ class RoomFieldsMixin$RoomState$GameData$Game$Boxes
 }
 
 @JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card
+    extends JsonSerializable with EquatableMixin, CardFieldsMixin {
+  RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card();
+
+  factory RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$RoomState$GameData$Game$Bluff$CardFromJson(json);
+
+  @override
+  List<Object?> get props => [color, number];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$RoomState$GameData$Game$Bluff$CardToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RoomFieldsMixin$RoomState$GameData$Game$Bluff
+    extends RoomFieldsMixin$RoomState$GameData$Game with EquatableMixin {
+  RoomFieldsMixin$RoomState$GameData$Game$Bluff();
+
+  factory RoomFieldsMixin$RoomState$GameData$Game$Bluff.fromJson(
+          Map<String, dynamic> json) =>
+      _$RoomFieldsMixin$RoomState$GameData$Game$BluffFromJson(json);
+
+  late String turn;
+
+  late String roundPlayer;
+
+  RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card? claimedCard;
+
+  late List<RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card> deck;
+
+  late List<List<RoomFieldsMixin$RoomState$GameData$Game$Bluff$Card>>
+      centeredCard;
+
+  @override
+  List<Object?> get props =>
+      [turn, roundPlayer, claimedCard, deck, centeredCard];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RoomFieldsMixin$RoomState$GameData$Game$BluffToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class RoomFieldsMixin$RoomState$GameData$Game extends JsonSerializable
     with EquatableMixin {
   RoomFieldsMixin$RoomState$GameData$Game();
@@ -1135,6 +1543,8 @@ class RoomFieldsMixin$RoomState$GameData$Game extends JsonSerializable
         return RoomFieldsMixin$RoomState$GameData$Game$Bingo.fromJson(json);
       case r'Boxes':
         return RoomFieldsMixin$RoomState$GameData$Game$Boxes.fromJson(json);
+      case r'Bluff':
+        return RoomFieldsMixin$RoomState$GameData$Game$Bluff.fromJson(json);
       default:
     }
     return _$RoomFieldsMixin$RoomState$GameData$GameFromJson(json);
@@ -1152,6 +1562,8 @@ class RoomFieldsMixin$RoomState$GameData$Game extends JsonSerializable
         return (this as RoomFieldsMixin$RoomState$GameData$Game$Bingo).toJson();
       case r'Boxes':
         return (this as RoomFieldsMixin$RoomState$GameData$Game$Boxes).toJson();
+      case r'Bluff':
+        return (this as RoomFieldsMixin$RoomState$GameData$Game$Bluff).toJson();
       default:
     }
     return _$RoomFieldsMixin$RoomState$GameData$GameToJson(this);
@@ -1667,6 +2079,49 @@ class GameMessages$Subscription extends JsonSerializable with EquatableMixin {
   Map<String, dynamic> toJson() => _$GameMessages$SubscriptionToJson(this);
 }
 
+enum CardColor {
+  @JsonValue('SPADE')
+  spade,
+  @JsonValue('HEART')
+  heart,
+  @JsonValue('CLUB')
+  club,
+  @JsonValue('DIAMOND')
+  diamond,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum CardNum {
+  @JsonValue('ACE')
+  ace,
+  @JsonValue('TWO')
+  two,
+  @JsonValue('THREE')
+  three,
+  @JsonValue('FOUR')
+  four,
+  @JsonValue('FIVE')
+  five,
+  @JsonValue('SIX')
+  six,
+  @JsonValue('SEVEN')
+  seven,
+  @JsonValue('EIGHT')
+  eight,
+  @JsonValue('NINE')
+  nine,
+  @JsonValue('TEN')
+  ten,
+  @JsonValue('JACK')
+  jack,
+  @JsonValue('QUEEN')
+  queen,
+  @JsonValue('KING')
+  king,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+
 @JsonSerializable(explicitToJson: true)
 class CreateLobbyArguments extends JsonSerializable with EquatableMixin {
   CreateLobbyArguments({required this.playerId, required this.playerName});
@@ -1813,6 +2268,38 @@ class DisconnectMutation
   @override
   Disconnect$MutationRoot parse(Map<String, dynamic> json) =>
       Disconnect$MutationRoot.fromJson(json);
+}
+
+final PING_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'ping'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'ping'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class PingQuery extends GraphQLQuery<Ping$QueryRoot, JsonSerializable> {
+  PingQuery();
+
+  @override
+  final DocumentNode document = PING_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'ping';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  Ping$QueryRoot parse(Map<String, dynamic> json) =>
+      Ping$QueryRoot.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2340,6 +2827,493 @@ class BoxesPlayerMovQuery
 }
 
 @JsonSerializable(explicitToJson: true)
+class BluffStartGameArguments extends JsonSerializable with EquatableMixin {
+  BluffStartGameArguments(
+      {required this.playerId, required this.roomId, required this.seed});
+
+  @override
+  factory BluffStartGameArguments.fromJson(Map<String, dynamic> json) =>
+      _$BluffStartGameArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  late int seed;
+
+  @override
+  List<Object?> get props => [playerId, roomId, seed];
+  @override
+  Map<String, dynamic> toJson() => _$BluffStartGameArgumentsToJson(this);
+}
+
+final BLUFF_START_GAME_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'bluffStartGame'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'seed')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'gameEvent'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'bluffInputs'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'startGame'),
+                        alias: null,
+                        arguments: [
+                          ArgumentNode(
+                              name: NameNode(value: 'seed'),
+                              value:
+                                  VariableNode(name: NameNode(value: 'seed')))
+                        ],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class BluffStartGameQuery
+    extends GraphQLQuery<BluffStartGame$QueryRoot, BluffStartGameArguments> {
+  BluffStartGameQuery({required this.variables});
+
+  @override
+  final DocumentNode document = BLUFF_START_GAME_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'bluffStartGame';
+
+  @override
+  final BluffStartGameArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  BluffStartGame$QueryRoot parse(Map<String, dynamic> json) =>
+      BluffStartGame$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerPassArguments extends JsonSerializable with EquatableMixin {
+  BluffPlayerPassArguments({required this.playerId, required this.roomId});
+
+  @override
+  factory BluffPlayerPassArguments.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerPassArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  @override
+  List<Object?> get props => [playerId, roomId];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerPassArgumentsToJson(this);
+}
+
+final BLUFF_PLAYER_PASS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'bluffPlayerPass'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'gameEvent'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'bluffInputs'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'pass'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class BluffPlayerPassQuery
+    extends GraphQLQuery<BluffPlayerPass$QueryRoot, BluffPlayerPassArguments> {
+  BluffPlayerPassQuery({required this.variables});
+
+  @override
+  final DocumentNode document = BLUFF_PLAYER_PASS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'bluffPlayerPass';
+
+  @override
+  final BluffPlayerPassArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  BluffPlayerPass$QueryRoot parse(Map<String, dynamic> json) =>
+      BluffPlayerPass$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerFlipArguments extends JsonSerializable with EquatableMixin {
+  BluffPlayerFlipArguments({required this.playerId, required this.roomId});
+
+  @override
+  factory BluffPlayerFlipArguments.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerFlipArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  @override
+  List<Object?> get props => [playerId, roomId];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerFlipArgumentsToJson(this);
+}
+
+final BLUFF_PLAYER_FLIP_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'bluffPlayerFlip'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'gameEvent'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'bluffInputs'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'flip'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class BluffPlayerFlipQuery
+    extends GraphQLQuery<BluffPlayerFlip$QueryRoot, BluffPlayerFlipArguments> {
+  BluffPlayerFlipQuery({required this.variables});
+
+  @override
+  final DocumentNode document = BLUFF_PLAYER_FLIP_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'bluffPlayerFlip';
+
+  @override
+  final BluffPlayerFlipArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  BluffPlayerFlip$QueryRoot parse(Map<String, dynamic> json) =>
+      BluffPlayerFlip$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerVoteRoundEndArguments extends JsonSerializable
+    with EquatableMixin {
+  BluffPlayerVoteRoundEndArguments(
+      {required this.playerId, required this.roomId});
+
+  @override
+  factory BluffPlayerVoteRoundEndArguments.fromJson(
+          Map<String, dynamic> json) =>
+      _$BluffPlayerVoteRoundEndArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  @override
+  List<Object?> get props => [playerId, roomId];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BluffPlayerVoteRoundEndArgumentsToJson(this);
+}
+
+final BLUFF_PLAYER_VOTE_ROUND_END_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'bluffPlayerVoteRoundEnd'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'gameEvent'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'bluffInputs'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'voteRoundEnd'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class BluffPlayerVoteRoundEndQuery extends GraphQLQuery<
+    BluffPlayerVoteRoundEnd$QueryRoot, BluffPlayerVoteRoundEndArguments> {
+  BluffPlayerVoteRoundEndQuery({required this.variables});
+
+  @override
+  final DocumentNode document = BLUFF_PLAYER_VOTE_ROUND_END_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'bluffPlayerVoteRoundEnd';
+
+  @override
+  final BluffPlayerVoteRoundEndArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  BluffPlayerVoteRoundEnd$QueryRoot parse(Map<String, dynamic> json) =>
+      BluffPlayerVoteRoundEnd$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class BluffPlayerDealArguments extends JsonSerializable with EquatableMixin {
+  BluffPlayerDealArguments(
+      {required this.playerId,
+      required this.roomId,
+      required this.cards,
+      required this.claim});
+
+  @override
+  factory BluffPlayerDealArguments.fromJson(Map<String, dynamic> json) =>
+      _$BluffPlayerDealArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  late List<int> cards;
+
+  late int claim;
+
+  @override
+  List<Object?> get props => [playerId, roomId, cards, claim];
+  @override
+  Map<String, dynamic> toJson() => _$BluffPlayerDealArgumentsToJson(this);
+}
+
+final BLUFF_PLAYER_DEAL_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'bluffPlayerDeal'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'cards')),
+            type: ListTypeNode(
+                type: NamedTypeNode(
+                    name: NameNode(value: 'Int'), isNonNull: true),
+                isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'claim')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'gameEvent'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'bluffInputs'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'deal'),
+                        alias: null,
+                        arguments: [
+                          ArgumentNode(
+                              name: NameNode(value: 'cards'),
+                              value:
+                                  VariableNode(name: NameNode(value: 'cards'))),
+                          ArgumentNode(
+                              name: NameNode(value: 'claim'),
+                              value:
+                                  VariableNode(name: NameNode(value: 'claim')))
+                        ],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class BluffPlayerDealQuery
+    extends GraphQLQuery<BluffPlayerDeal$QueryRoot, BluffPlayerDealArguments> {
+  BluffPlayerDealQuery({required this.variables});
+
+  @override
+  final DocumentNode document = BLUFF_PLAYER_DEAL_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'bluffPlayerDeal';
+
+  @override
+  final BluffPlayerDealArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  BluffPlayerDeal$QueryRoot parse(Map<String, dynamic> json) =>
+      BluffPlayerDeal$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
 class JoinLobbyArguments extends JsonSerializable with EquatableMixin {
   JoinLobbyArguments(
       {required this.playerId, required this.playerName, required this.roomId});
@@ -2425,38 +3399,6 @@ class JoinLobbyMutation
       JoinLobby$MutationRoot.fromJson(json);
 }
 
-final PING_QUERY_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'ping'),
-      variableDefinitions: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'ping'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null)
-      ]))
-]);
-
-class PingQuery extends GraphQLQuery<Ping$QueryRoot, JsonSerializable> {
-  PingQuery();
-
-  @override
-  final DocumentNode document = PING_QUERY_DOCUMENT;
-
-  @override
-  final String operationName = 'ping';
-
-  @override
-  List<Object?> get props => [document, operationName];
-  @override
-  Ping$QueryRoot parse(Map<String, dynamic> json) =>
-      Ping$QueryRoot.fromJson(json);
-}
-
 @JsonSerializable(explicitToJson: true)
 class GameMessagesArguments extends JsonSerializable with EquatableMixin {
   GameMessagesArguments({required this.roomId, required this.playerId});
@@ -2530,6 +3472,25 @@ final GAME_MESSAGES_SUBSCRIPTION_DOCUMENT = DocumentNode(definitions: [
       selectionSet: SelectionSetNode(selections: [
         FieldNode(
             name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  FragmentDefinitionNode(
+      name: NameNode(value: 'cardFields'),
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(name: NameNode(value: 'Card'), isNonNull: false)),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'number'),
             alias: null,
             arguments: [],
             directives: [],
@@ -2641,6 +3602,30 @@ final GAME_MESSAGES_SUBSCRIPTION_DOCUMENT = DocumentNode(definitions: [
                                     ],
                                     directives: [],
                                     selectionSet: null)
+                              ])),
+                          InlineFragmentNode(
+                              typeCondition: TypeConditionNode(
+                                  on: NamedTypeNode(
+                                      name: NameNode(value: 'BluffPlayerData'),
+                                      isNonNull: false)),
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'endTurnRaised'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'cards'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'cardFields'),
+                                          directives: [])
+                                    ]))
                               ]))
                         ])),
                     FieldNode(
@@ -2840,6 +3825,34 @@ final GAME_MESSAGES_SUBSCRIPTION_DOCUMENT = DocumentNode(definitions: [
                                     selectionSet: SelectionSetNode(selections: [
                                       FieldNode(
                                           name: NameNode(value: 'color'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                InlineFragmentNode(
+                                    typeCondition: TypeConditionNode(
+                                        on: NamedTypeNode(
+                                            name: NameNode(
+                                                value: 'BluffPlayerData'),
+                                            isNonNull: false)),
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'cards'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: SelectionSetNode(
+                                              selections: [
+                                                FragmentSpreadNode(
+                                                    name: NameNode(
+                                                        value: 'cardFields'),
+                                                    directives: [])
+                                              ])),
+                                      FieldNode(
+                                          name:
+                                              NameNode(value: 'endTurnRaised'),
                                           alias: null,
                                           arguments: [],
                                           directives: [],
@@ -3062,6 +4075,56 @@ final GAME_MESSAGES_SUBSCRIPTION_DOCUMENT = DocumentNode(definitions: [
                                           arguments: [],
                                           directives: [],
                                           selectionSet: null)
+                                    ]))
+                              ])),
+                          InlineFragmentNode(
+                              typeCondition: TypeConditionNode(
+                                  on: NamedTypeNode(
+                                      name: NameNode(value: 'Bluff'),
+                                      isNonNull: false)),
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'turn'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'roundPlayer'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'claimedCard'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'cardFields'),
+                                          directives: [])
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'deck'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'cardFields'),
+                                          directives: [])
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'centeredCard'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'cardFields'),
+                                          directives: [])
                                     ]))
                               ]))
                         ]))

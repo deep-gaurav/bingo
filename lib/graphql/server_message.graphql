@@ -11,6 +11,11 @@ fragment occupied on Occupied {
 fragment unoccupied on Unoccupied {
   id
 }
+
+fragment cardFields on Card{
+  color
+  number
+}
 fragment roomFields on Room {
   id
   players {
@@ -28,6 +33,12 @@ fragment roomFields on Room {
         ... on BoxesPlayerData {
           color
           score(roomId: $roomId)
+        }
+        ... on BluffPlayerData {
+          endTurnRaised
+          cards{
+            ...cardFields
+          }
         }
       }
       player {
@@ -80,6 +91,12 @@ fragment roomFields on Room {
           ... on BoxesPlayerData {
             color
           }
+          ... on BluffPlayerData {
+            cards{
+              ...cardFields
+            }
+            endTurnRaised
+          }
         }
       }
       game {
@@ -124,6 +141,19 @@ fragment roomFields on Room {
           }
           cells{
             occupiedBy
+          }
+        }
+        ... on Bluff{
+          turn
+          roundPlayer
+          claimedCard{
+            ...cardFields
+          }
+          deck {
+            ...cardFields
+          }
+          centeredCard{
+            ...cardFields
           }
         }
       }

@@ -13,11 +13,12 @@ class BoxesBoard extends StatefulWidget {
   final RoomFieldsMixin$RoomState$GameData gameData;
   final String roomId;
 
-  BoxesBoard(
-      {required this.data,
-      required this.turnPlayer,
-      required this.gameData,
-      required this.roomId});
+  BoxesBoard({
+    required this.data,
+    required this.turnPlayer,
+    required this.gameData,
+    required this.roomId,
+  });
 
   @override
   _BoxesBoardState createState() => _BoxesBoardState();

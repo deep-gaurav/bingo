@@ -1,5 +1,6 @@
 import 'package:bingo/api/api.dart';
 import 'package:bingo/networking/clientProvider.dart';
+import 'package:bingo/screens/bluff/bluff_board.dart';
 import 'package:bingo/screens/board_builder.dart';
 import 'package:bingo/screens/boxes.dart/boxes_board.dart';
 import 'package:bingo/screens/game_board.dart';
@@ -74,6 +75,19 @@ class Game extends StatelessWidget {
           (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
           data.turn);
       return BoxesBoard(
+        data: data,
+        roomId: room.id,
+        turnPlayer: turnPlayer as RoomFieldsMixin$CommonPlayer$GamePlayer,
+        gameData: roomState,
+      );
+    } else if (roomState.game
+        is RoomFieldsMixin$RoomState$GameData$Game$Bluff) {
+      var data =
+          (roomState.game as RoomFieldsMixin$RoomState$GameData$Game$Bluff);
+      var turnPlayer = room.players.firstWhere((element) =>
+          (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
+          data.turn);
+      return BluffBoard(
         data: data,
         roomId: room.id,
         turnPlayer: turnPlayer as RoomFieldsMixin$CommonPlayer$GamePlayer,

@@ -22,6 +22,27 @@ type BingoPlayerData {
   board: Board
 }
 
+type Bluff {
+  deck: [Card!]!
+  centeredCard: [[Card!]!]!
+  turn: String!
+  roundPlayer: String!
+  claimedCard: Card
+}
+
+type BluffInputs {
+  startGame(seed: Int!): Boolean!
+  pass: Boolean!
+  flip: Boolean!
+  voteRoundEnd: Boolean!
+  deal(cards: [Int!]!, claim: Int!): Boolean!
+}
+
+type BluffPlayerData {
+  cards: [Card!]!
+  endTurnRaised: Boolean!
+}
+
 type Board {
   numbers: [[Int!]!]!
   score(roomId: String!): Int!
@@ -50,6 +71,34 @@ type BoxesPlayerData {
   score(roomId: String!): Int!
 }
 
+type Card {
+  number: CardNum!
+  color: CardColor!
+}
+
+enum CardColor {
+  SPADE
+  HEART
+  CLUB
+  DIAMOND
+}
+
+enum CardNum {
+  ACE
+  TWO
+  THREE
+  FOUR
+  FIVE
+  SIX
+  SEVEN
+  EIGHT
+  NINE
+  TEN
+  JACK
+  QUEEN
+  KING
+}
+
 type Cell {
   occupiedBy: String
 }
@@ -60,7 +109,7 @@ interface CommonPlayer {
 
 union EdgeType = Occupied | Unoccupied
 
-union Game = Bingo | Boxes
+union Game = Bingo | Boxes | Bluff
 
 type GameData {
   players: [GamePlayer!]!
@@ -73,6 +122,7 @@ union GameEvents = GameStarted | RoomUpdate
 type GameInputs {
   bingoInputs: BingoInputs!
   boxesInputs: BoxesInputs!
+  bluffInputs: BluffInputs!
 }
 
 type GameMessage {
@@ -134,7 +184,7 @@ type PlayerConnected {
   room: Room!
 }
 
-union PlayerGameData = BingoPlayerData | BoxesPlayerData
+union PlayerGameData = BingoPlayerData | BoxesPlayerData | BluffPlayerData
 
 type PlayerJoined {
   player: Player!

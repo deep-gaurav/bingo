@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:bingo/api/api.dart';
@@ -154,6 +155,21 @@ class _RoomState extends State<Room> {
                                     ),
                                   );
                             },
+                            startBluffGame: () async {
+                              var result = await GameClient.of(context)
+                                  ?.artemisClient
+                                  .execute(
+                                    BluffStartGameQuery(
+                                      variables: BluffStartGameArguments(
+                                        playerId:
+                                            GameClient.of(context)!.playerId,
+                                        roomId: widget.room.id,
+                                        seed: Random().nextInt(5),
+                                      ),
+                                    ),
+                                  );
+                              print(result);
+                            },
                             leaveRoom: () async {
                               await GameClient.of(context)
                                   ?.disconnect(widget.room.id);
@@ -197,6 +213,8 @@ class _RoomState extends State<Room> {
 class SettingsWidget extends StatefulWidget {
   final void Function(int) startBingoGame;
   final void Function(int, int) startBoxesGame;
+  final void Function() startBluffGame;
+
   final Function leaveRoom;
   final bool canStart;
 
@@ -206,6 +224,7 @@ class SettingsWidget extends StatefulWidget {
     required this.canStart,
     required this.leaveRoom,
     required this.startBoxesGame,
+    required this.startBluffGame,
   }) : super(key: key);
 
   @override
@@ -229,7 +248,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
 
   @override
   void initState() {
-    pageController = TabController(length: 2, vsync: this);
+    pageController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -260,6 +279,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                 ),
                 Tab(
                   text: 'Boxes',
+                ),
+                Tab(
+                  text: 'Bluff',
                 )
               ]),
           Expanded(
@@ -268,6 +290,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
               children: [
                 SingleChildScrollView(child: buildBingoSetting()),
                 SingleChildScrollView(child: buildBoxesSetting()),
+                SingleChildScrollView(child: buildBluffSetting()),
               ],
             ),
           ),
@@ -278,9 +301,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                     onPressed: () {
                       if (pageController.index == 0) {
                         widget.startBingoGame(bingoBoardSize);
-                      } else {
+                      } else if (pageController.index == 1) {
                         widget.startBoxesGame(
                             boxesBoardWidth, boxesBoardHeight);
+                      } else if (pageController.index == 2) {
+                        widget.startBluffGame();
                       }
                     },
                     child: Text("Start Game"),
@@ -410,6 +435,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Container buildBluffSetting() {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [],
       ),
     );
   }
