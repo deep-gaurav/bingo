@@ -474,7 +474,7 @@ class _CardSelectorState extends State<CardSelector> {
 
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ...Suit.values
+                    ...[Suit.spades]
                         .map(
                       (suit) => CardValue.values.map(
                         (value) => Container(
