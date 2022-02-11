@@ -229,40 +229,43 @@ class _ChatWindowState extends State<ChatWindow> {
                               children: [
                                 ...List.generate(chatMessages.length, (i) => i)
                                     .map(
-                                  (i) {
-                                    var e = chatMessages[i];
-                                    var showName = true;
-                                    if (i > 1) {
-                                      if (chatMessages[i - 1].player.id ==
-                                          chatMessages[i].player.id) {
-                                        showName = false;
-                                      }
-                                    }
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        if (e.player.id !=
-                                                GameClient.of(context)!
-                                                    .playerId &&
-                                            showName)
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            child: Text(
-                                              e.player.name,
-                                              textAlign: TextAlign.left,
+                                      (i) {
+                                        var e = chatMessages[i];
+                                        var showName = true;
+                                        if (i > 1) {
+                                          if (chatMessages[i - 1].player.id ==
+                                              chatMessages[i].player.id) {
+                                            showName = false;
+                                          }
+                                        }
+                                        return Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            if (e.player.id !=
+                                                    GameClient.of(context)!
+                                                        .playerId &&
+                                                showName)
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 20, right: 20),
+                                                child: Text(
+                                                  e.player.name,
+                                                  textAlign: TextAlign.left,
+                                                ),
+                                              ),
+                                            BubbleNormal(
+                                              text: e.message,
+                                              isSender: e.player.id ==
+                                                  GameClient.of(context)!
+                                                      .playerId,
                                             ),
-                                          ),
-                                        BubbleNormal(
-                                          text: e.message,
-                                          isSender: e.player.id ==
-                                              GameClient.of(context)!.playerId,
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                )
+                                          ],
+                                        );
+                                      },
+                                    )
+                                    .toList()
+                                    .reversed
                               ],
                             ),
                           ),
