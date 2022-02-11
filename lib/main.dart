@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:artemis/artemis.dart';
 import 'package:bingo/networking/clientProvider.dart';
+import 'package:bingo/utils/slide_page_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:gql_websocket_link/gql_websocket_link.dart';
 import 'package:localstorage/localstorage.dart';
@@ -41,8 +42,10 @@ class _MyAppState extends State<MyApp> {
       null,
       channelGenerator: () => WebSocketChannel.connect(
         Uri.parse(
-          const String.fromEnvironment('BACKEND_URL',
-              defaultValue: 'wss://bingotingo.herokuapp.com/'),
+          const String.fromEnvironment(
+            'BACKEND_URL',
+            defaultValue: 'wss://bingotingo.herokuapp.com/',
+          ),
           // 'ws://localhost:8000/',
         ),
         protocols: ['graphql-ws'],

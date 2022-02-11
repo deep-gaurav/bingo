@@ -2,8 +2,10 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:bingo/api/api.dart';
+import 'package:bingo/main.dart';
 import 'package:bingo/networking/clientProvider.dart';
 import 'package:bingo/screens/players.dart';
+import 'package:bingo/widgets/chat.dart';
 import 'package:bingo/widgets/game_result.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/foundation.dart';
@@ -116,87 +118,90 @@ class _RoomState extends State<Room> {
           ]),
         ),
         body: SafeArea(
-          child: Container(
-            margin: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  child: Flex(
-                    direction: isScreenWide ? Axis.horizontal : Axis.vertical,
-                    verticalDirection: VerticalDirection.up,
-                    children: [
-                      Expanded(
-                        flex: isScreenWide ? 1 : 2,
-                        child: SettingsWidget(
-                            startBingoGame: (boardSize) {
-                              GameClient.of(context)?.artemisClient.execute(
-                                    BingoStartGameQuery(
-                                      variables: BingoStartGameArguments(
-                                        playerId:
-                                            GameClient.of(context)!.playerId,
-                                        roomId: widget.room.id,
-                                        boardSize: boardSize,
+          child: ChatWidget(
+            roomId: widget.room.id,
+            child: Container(
+              margin: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Flex(
+                      direction: isScreenWide ? Axis.horizontal : Axis.vertical,
+                      verticalDirection: VerticalDirection.up,
+                      children: [
+                        Expanded(
+                          flex: isScreenWide ? 1 : 2,
+                          child: SettingsWidget(
+                              startBingoGame: (boardSize) {
+                                GameClient.of(context)?.artemisClient.execute(
+                                      BingoStartGameQuery(
+                                        variables: BingoStartGameArguments(
+                                          playerId:
+                                              GameClient.of(context)!.playerId,
+                                          roomId: widget.room.id,
+                                          boardSize: boardSize,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                            },
-                            startBoxesGame: (width, height) {
-                              GameClient.of(context)?.artemisClient.execute(
-                                    BoxesStartGameQuery(
-                                      variables: BoxesStartGameArguments(
-                                        playerId:
-                                            GameClient.of(context)!.playerId,
-                                        roomId: widget.room.id,
-                                        boardWidth: width,
-                                        boardHeight: height,
+                                    );
+                              },
+                              startBoxesGame: (width, height) {
+                                GameClient.of(context)?.artemisClient.execute(
+                                      BoxesStartGameQuery(
+                                        variables: BoxesStartGameArguments(
+                                          playerId:
+                                              GameClient.of(context)!.playerId,
+                                          roomId: widget.room.id,
+                                          boardWidth: width,
+                                          boardHeight: height,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                            },
-                            startBluffGame: () async {
-                              var result = await GameClient.of(context)
-                                  ?.artemisClient
-                                  .execute(
-                                    BluffStartGameQuery(
-                                      variables: BluffStartGameArguments(
-                                        playerId:
-                                            GameClient.of(context)!.playerId,
-                                        roomId: widget.room.id,
-                                        seed: Random().nextInt(5),
+                                    );
+                              },
+                              startBluffGame: () async {
+                                var result = await GameClient.of(context)
+                                    ?.artemisClient
+                                    .execute(
+                                      BluffStartGameQuery(
+                                        variables: BluffStartGameArguments(
+                                          playerId:
+                                              GameClient.of(context)!.playerId,
+                                          roomId: widget.room.id,
+                                          seed: Random().nextInt(5),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                              print(result);
-                            },
-                            leaveRoom: () async {
-                              await GameClient.of(context)
-                                  ?.disconnect(widget.room.id);
-                              Navigator.pop(context);
-                            },
-                            canStart: widget.room.players.length > 1 &&
-                                widget.room.players
-                                    .every((element) => element.isConnected)),
-                      ),
-                      SizedBox(
-                        width: isScreenWide ? 20 : double.infinity,
-                        height: isScreenWide ? double.infinity : 20,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Players(
-                          players: widget.room.players,
-                          onKickPlayer: (playerId) async {
-                            GameClient.of(context)
-                                ?.kick(widget.room.id, playerId);
-                          },
+                                    );
+                                print(result);
+                              },
+                              leaveRoom: () async {
+                                await GameClient.of(context)
+                                    ?.disconnect(widget.room.id);
+                                Navigator.pop(context);
+                              },
+                              canStart: widget.room.players.length > 1 &&
+                                  widget.room.players
+                                      .every((element) => element.isConnected)),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        SizedBox(
+                          width: isScreenWide ? 20 : double.infinity,
+                          height: isScreenWide ? double.infinity : 20,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Players(
+                            players: widget.room.players,
+                            onKickPlayer: (playerId) async {
+                              GameClient.of(context)
+                                  ?.kick(widget.room.id, playerId);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

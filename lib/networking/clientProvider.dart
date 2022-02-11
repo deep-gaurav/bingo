@@ -18,6 +18,9 @@ class GameClient extends InheritedWidget {
   late final TextEditingController playerName =
       TextEditingController(text: initialPlayerName);
 
+  StreamController<GraphQLResponse<GameMessages$Subscription>> stream =
+      StreamController.broadcast();
+
   GameClient(
       {Key? key,
       required this.child,
@@ -116,8 +119,6 @@ class GameClient extends InheritedWidget {
         ),
       ),
     );
-    var controller = StreamController<
-        GraphQLResponse<GameMessages$Subscription>>.broadcast();
     var completer =
         Completer<Stream<GraphQLResponse<GameMessages$Subscription>>>();
     bool isFirst = true;
@@ -125,16 +126,16 @@ class GameClient extends InheritedWidget {
       if (isFirst) {
         isFirst = false;
         if (event.data != null) {
-          completer.complete(controller.stream);
+          completer.complete(stream.stream);
           await Future.delayed(Duration(milliseconds: 100));
         } else {
           completer.completeError("Cant connect");
           debugPrint("Event $event Data ${event.data} Error ${event.errors}");
         }
       }
-      controller.add(event);
+      stream.add(event);
     }).onDone(() {
-      controller.close();
+      stream.close();
     });
     return completer.future;
   }

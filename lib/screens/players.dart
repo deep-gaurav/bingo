@@ -427,8 +427,9 @@ class PlayerAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: playerColor?.withOpacity(0.5) ?? Colors.transparent),
+        shape: BoxShape.circle,
+        color: playerColor?.withOpacity(0.5) ?? Colors.transparent,
+      ),
       child: WebsafeSvg.string(
         multiavatar(player.id, trBackground: playerColor != null),
         height: 80,

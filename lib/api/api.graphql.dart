@@ -77,6 +77,21 @@ class Ping$QueryRoot extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Chat$MutationRoot extends JsonSerializable with EquatableMixin {
+  Chat$MutationRoot();
+
+  factory Chat$MutationRoot.fromJson(Map<String, dynamic> json) =>
+      _$Chat$MutationRootFromJson(json);
+
+  late String chat;
+
+  @override
+  List<Object?> get props => [chat];
+  @override
+  Map<String, dynamic> toJson() => _$Chat$MutationRootToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class BingoStartGame$QueryRoot$GameInputs$BingoInputs extends JsonSerializable
     with EquatableMixin {
   BingoStartGame$QueryRoot$GameInputs$BingoInputs();
@@ -1845,6 +1860,43 @@ class GameMessages$Subscription$ServerResponse$PlayerRemoved
 }
 
 @JsonSerializable(explicitToJson: true)
+class GameMessages$Subscription$ServerResponse$ChatMessage$Player
+    extends JsonSerializable with EquatableMixin, PlayerFieldsMixin {
+  GameMessages$Subscription$ServerResponse$ChatMessage$Player();
+
+  factory GameMessages$Subscription$ServerResponse$ChatMessage$Player.fromJson(
+          Map<String, dynamic> json) =>
+      _$GameMessages$Subscription$ServerResponse$ChatMessage$PlayerFromJson(
+          json);
+
+  @override
+  List<Object?> get props => [id, name];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$GameMessages$Subscription$ServerResponse$ChatMessage$PlayerToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GameMessages$Subscription$ServerResponse$ChatMessage
+    extends GameMessages$Subscription$ServerResponse with EquatableMixin {
+  GameMessages$Subscription$ServerResponse$ChatMessage();
+
+  factory GameMessages$Subscription$ServerResponse$ChatMessage.fromJson(
+          Map<String, dynamic> json) =>
+      _$GameMessages$Subscription$ServerResponse$ChatMessageFromJson(json);
+
+  late GameMessages$Subscription$ServerResponse$ChatMessage$Player player;
+
+  late String message;
+
+  @override
+  List<Object?> get props => [player, message];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$GameMessages$Subscription$ServerResponse$ChatMessageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class GameMessages$Subscription$ServerResponse$GameMessage$Room
     extends JsonSerializable with EquatableMixin, RoomFieldsMixin {
   GameMessages$Subscription$ServerResponse$GameMessage$Room();
@@ -2026,6 +2078,9 @@ class GameMessages$Subscription$ServerResponse extends JsonSerializable
       case r'PlayerRemoved':
         return GameMessages$Subscription$ServerResponse$PlayerRemoved.fromJson(
             json);
+      case r'ChatMessage':
+        return GameMessages$Subscription$ServerResponse$ChatMessage.fromJson(
+            json);
       case r'GameMessage':
         return GameMessages$Subscription$ServerResponse$GameMessage.fromJson(
             json);
@@ -2054,6 +2109,9 @@ class GameMessages$Subscription$ServerResponse extends JsonSerializable
             .toJson();
       case r'PlayerRemoved':
         return (this as GameMessages$Subscription$ServerResponse$PlayerRemoved)
+            .toJson();
+      case r'ChatMessage':
+        return (this as GameMessages$Subscription$ServerResponse$ChatMessage)
             .toJson();
       case r'GameMessage':
         return (this as GameMessages$Subscription$ServerResponse$GameMessage)
@@ -2300,6 +2358,91 @@ class PingQuery extends GraphQLQuery<Ping$QueryRoot, JsonSerializable> {
   @override
   Ping$QueryRoot parse(Map<String, dynamic> json) =>
       Ping$QueryRoot.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChatArguments extends JsonSerializable with EquatableMixin {
+  ChatArguments(
+      {required this.playerId, required this.roomId, required this.message});
+
+  @override
+  factory ChatArguments.fromJson(Map<String, dynamic> json) =>
+      _$ChatArgumentsFromJson(json);
+
+  late String playerId;
+
+  late String roomId;
+
+  late String message;
+
+  @override
+  List<Object?> get props => [playerId, roomId, message];
+  @override
+  Map<String, dynamic> toJson() => _$ChatArgumentsToJson(this);
+}
+
+final CHAT_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'chat'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'playerId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'roomId')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'message')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'chat'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'playerId'),
+                  value: VariableNode(name: NameNode(value: 'playerId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'roomId'),
+                  value: VariableNode(name: NameNode(value: 'roomId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'message'),
+                  value: VariableNode(name: NameNode(value: 'message')))
+            ],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class ChatMutation extends GraphQLQuery<Chat$MutationRoot, ChatArguments> {
+  ChatMutation({required this.variables});
+
+  @override
+  final DocumentNode document = CHAT_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'chat';
+
+  @override
+  final ChatArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  Chat$MutationRoot parse(Map<String, dynamic> json) =>
+      Chat$MutationRoot.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4280,6 +4423,30 @@ final GAME_MESSAGES_SUBSCRIPTION_DOCUMENT = DocumentNode(definitions: [
                               name: NameNode(value: 'roomFields'),
                               directives: [])
                         ]))
+                  ])),
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'ChatMessage'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'player'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FragmentSpreadNode(
+                              name: NameNode(value: 'playerFields'),
+                              directives: [])
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'message'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
                   ])),
               InlineFragmentNode(
                   typeCondition: TypeConditionNode(

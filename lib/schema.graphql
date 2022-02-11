@@ -103,6 +103,11 @@ type Cell {
   occupiedBy: String
 }
 
+type ChatMessage {
+  player: Player!
+  message: String!
+}
+
 interface CommonPlayer {
   isConnected: Boolean!
 }
@@ -166,6 +171,7 @@ type MutationRoot {
   createLobby(playerId: String!, playerName: String!): String!
   joinLobby(playerId: String!, playerName: String!, roomId: String!): String!
   disconnect(playerId: String!, roomId: String!): String!
+  chat(playerId: String!, roomId: String!, message: String!): String!
 }
 
 type Occupied {
@@ -235,6 +241,7 @@ union ServerResponse =
   | PlayerLeft
   | PlayerRemoved
   | GameMessage
+  | ChatMessage
 
 type Subscription {
   serverMessages(roomId: String!, playerId: String!): ServerResponse!

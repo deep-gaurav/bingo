@@ -24,6 +24,8 @@ class _GameMessageBuilderState extends State<GameMessageBuilder> {
       StreamController<GraphQLResponse<GameMessages$Subscription>>.broadcast();
 
   StreamSubscription<GraphQLResponse<GameMessages$Subscription>>? subscription;
+  RoomFieldsMixin? room;
+
   @override
   void initState() {
     super.initState();
@@ -82,7 +84,6 @@ class _GameMessageBuilderState extends State<GameMessageBuilder> {
             var message = ass.data?.data?.serverMessages;
             print("Message: ${ass.data?.data} Error: ${ass.data?.errors}");
             if (message != null) {
-              RoomFieldsMixin? room;
               if (message
                   is GameMessages$Subscription$ServerResponse$PlayerJoined) {
                 room = message.room;
@@ -100,13 +101,13 @@ class _GameMessageBuilderState extends State<GameMessageBuilder> {
                 room = message.room;
               }
               if (room != null) {
-                if (room.state is RoomFieldsMixin$RoomState$LobbyData) {
+                if (room!.state is RoomFieldsMixin$RoomState$LobbyData) {
                   return Room(
-                    key: Key(room.id),
-                    room: room,
+                    key: Key(room!.id),
+                    room: room!,
                   );
                 } else {
-                  return Game(room: room);
+                  return Game(room: room!);
                 }
               }
             }

@@ -39,6 +39,15 @@ Map<String, dynamic> _$Ping$QueryRootToJson(Ping$QueryRoot instance) =>
       'ping': instance.ping,
     };
 
+Chat$MutationRoot _$Chat$MutationRootFromJson(Map<String, dynamic> json) {
+  return Chat$MutationRoot()..chat = json['chat'] as String;
+}
+
+Map<String, dynamic> _$Chat$MutationRootToJson(Chat$MutationRoot instance) =>
+    <String, dynamic>{
+      'chat': instance.chat,
+    };
+
 BingoStartGame$QueryRoot$GameInputs$BingoInputs
     _$BingoStartGame$QueryRoot$GameInputs$BingoInputsFromJson(
         Map<String, dynamic> json) {
@@ -1525,6 +1534,43 @@ Map<String, dynamic>
           'room': instance.room.toJson(),
         };
 
+GameMessages$Subscription$ServerResponse$ChatMessage$Player
+    _$GameMessages$Subscription$ServerResponse$ChatMessage$PlayerFromJson(
+        Map<String, dynamic> json) {
+  return GameMessages$Subscription$ServerResponse$ChatMessage$Player()
+    ..id = json['id'] as String
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic>
+    _$GameMessages$Subscription$ServerResponse$ChatMessage$PlayerToJson(
+            GameMessages$Subscription$ServerResponse$ChatMessage$Player
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+        };
+
+GameMessages$Subscription$ServerResponse$ChatMessage
+    _$GameMessages$Subscription$ServerResponse$ChatMessageFromJson(
+        Map<String, dynamic> json) {
+  return GameMessages$Subscription$ServerResponse$ChatMessage()
+    ..$$typename = json['__typename'] as String?
+    ..player =
+        GameMessages$Subscription$ServerResponse$ChatMessage$Player.fromJson(
+            json['player'] as Map<String, dynamic>)
+    ..message = json['message'] as String;
+}
+
+Map<String, dynamic>
+    _$GameMessages$Subscription$ServerResponse$ChatMessageToJson(
+            GameMessages$Subscription$ServerResponse$ChatMessage instance) =>
+        <String, dynamic>{
+          '__typename': instance.$$typename,
+          'player': instance.player.toJson(),
+          'message': instance.message,
+        };
+
 GameMessages$Subscription$ServerResponse$GameMessage$Room
     _$GameMessages$Subscription$ServerResponse$GameMessage$RoomFromJson(
         Map<String, dynamic> json) {
@@ -1710,6 +1756,21 @@ Map<String, dynamic> _$DisconnectArgumentsToJson(
     <String, dynamic>{
       'playerId': instance.playerId,
       'roomId': instance.roomId,
+    };
+
+ChatArguments _$ChatArgumentsFromJson(Map<String, dynamic> json) {
+  return ChatArguments(
+    playerId: json['playerId'] as String,
+    roomId: json['roomId'] as String,
+    message: json['message'] as String,
+  );
+}
+
+Map<String, dynamic> _$ChatArgumentsToJson(ChatArguments instance) =>
+    <String, dynamic>{
+      'playerId': instance.playerId,
+      'roomId': instance.roomId,
+      'message': instance.message,
     };
 
 BingoStartGameArguments _$BingoStartGameArgumentsFromJson(

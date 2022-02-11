@@ -196,6 +196,12 @@ subscription gameMessages($roomId: String!, $playerId: String!) {
         ...roomFields
       }
     }
+    ... on ChatMessage{
+      player{
+        ...playerFields
+      }
+      message
+    }
     ... on GameMessage {
       room {
         ...roomFields
