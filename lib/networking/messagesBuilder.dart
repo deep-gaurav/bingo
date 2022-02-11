@@ -107,7 +107,10 @@ class _GameMessageBuilderState extends State<GameMessageBuilder> {
                     room: room!,
                   );
                 } else {
-                  return Game(room: room!);
+                  return Game(
+                    room: room!,
+                    key: Key('game'),
+                  );
                 }
               }
             }

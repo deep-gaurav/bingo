@@ -5,12 +5,18 @@ import 'package:bingo/screens/board_builder.dart';
 import 'package:bingo/screens/boxes.dart/boxes_board.dart';
 import 'package:bingo/screens/game_board.dart';
 import 'package:bingo/screens/players.dart';
+import 'package:bingo/widgets/chat.dart';
 import 'package:flutter/material.dart';
 
-class Game extends StatelessWidget {
+class Game extends StatefulWidget {
   final RoomFieldsMixin room;
   Game({required this.room, Key? key}) : super(key: key);
 
+  @override
+  State<Game> createState() => _GameState();
+}
+
+class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
     bool isScreenWide = MediaQuery.of(context).size.width >= 768;
@@ -19,45 +25,51 @@ class Game extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Center(
           child: Text(
-            "Room ${this.room.id}",
+            "Room ${this.widget.room.id}",
             style: Theme.of(context).textTheme.headline6,
             textAlign: TextAlign.center,
           ),
         ),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Flex(
-                direction: isScreenWide ? Axis.horizontal : Axis.vertical,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Players(
-                      players: room.players,
-                      ranks: (room.state as RoomFieldsMixin$RoomState$GameData)
-                          .leaderboard,
-                      onKickPlayer: (playerId) async {
-                        GameClient.of(context)?.kick(room.id, playerId);
-                      },
+      body: ChatWidget(
+        key: Key('chat'),
+        roomId: widget.room.id,
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Flex(
+                  direction: isScreenWide ? Axis.horizontal : Axis.vertical,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Players(
+                        players: widget.room.players,
+                        ranks: (widget.room.state
+                                as RoomFieldsMixin$RoomState$GameData)
+                            .leaderboard,
+                        onKickPlayer: (playerId) async {
+                          GameClient.of(context)
+                              ?.kick(widget.room.id, playerId);
+                        },
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: buildBoard(
-                      context,
-                      GameClient.of(context)!,
-                      room.state as RoomFieldsMixin$RoomState$GameData,
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    Expanded(
+                      flex: 7,
+                      child: buildBoard(
+                        context,
+                        GameClient.of(context)!,
+                        widget.room.state as RoomFieldsMixin$RoomState$GameData,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -71,12 +83,12 @@ class Game extends StatelessWidget {
         is RoomFieldsMixin$RoomState$GameData$Game$Boxes) {
       var data =
           (roomState.game as RoomFieldsMixin$RoomState$GameData$Game$Boxes);
-      var turnPlayer = room.players.firstWhere((element) =>
+      var turnPlayer = widget.room.players.firstWhere((element) =>
           (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
           data.turn);
       return BoxesBoard(
         data: data,
-        roomId: room.id,
+        roomId: widget.room.id,
         turnPlayer: turnPlayer as RoomFieldsMixin$CommonPlayer$GamePlayer,
         gameData: roomState,
       );
@@ -84,12 +96,12 @@ class Game extends StatelessWidget {
         is RoomFieldsMixin$RoomState$GameData$Game$Bluff) {
       var data =
           (roomState.game as RoomFieldsMixin$RoomState$GameData$Game$Bluff);
-      var turnPlayer = room.players.firstWhere((element) =>
+      var turnPlayer = widget.room.players.firstWhere((element) =>
           (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
           data.turn);
       return BluffBoard(
         data: data,
-        roomId: room.id,
+        roomId: widget.room.id,
         turnPlayer: turnPlayer as RoomFieldsMixin$CommonPlayer$GamePlayer,
         gameData: roomState,
       );
@@ -111,7 +123,7 @@ class Game extends StatelessWidget {
             BingoReadyBoardQuery(
               variables: BingoReadyBoardArguments(
                 playerId: gameClient.playerId,
-                roomId: room.id,
+                roomId: widget.room.id,
                 board: board,
               ),
             ),
@@ -128,12 +140,12 @@ class Game extends StatelessWidget {
               .gameState
           as RoomFieldsMixin$RoomState$GameData$Game$Bingo$GameState$GameRunning;
 
-      var player = room.players.firstWhere((element) =>
+      var player = widget.room.players.firstWhere((element) =>
               (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
               GameClient.of(context)?.playerId)
           as RoomFieldsMixin$CommonPlayer$GamePlayer;
 
-      var turnPlayer = room.players.firstWhere((element) =>
+      var turnPlayer = widget.room.players.firstWhere((element) =>
           (element as RoomFieldsMixin$CommonPlayer$GamePlayer).player.id ==
           gameRuningState.turn) as RoomFieldsMixin$CommonPlayer$GamePlayer;
 
@@ -143,7 +155,7 @@ class Game extends StatelessWidget {
                 as RoomFieldsMixin$CommonPlayer$GamePlayer$PlayerGameData$BingoPlayerData)
             .board!,
         turnPlayer: turnPlayer,
-        roomId: room.id,
+        roomId: widget.room.id,
       );
     }
   }

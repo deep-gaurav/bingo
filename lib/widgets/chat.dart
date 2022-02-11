@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:bingo/api/api.graphql.dart';
 import 'package:bingo/networking/clientProvider.dart';
 import 'package:chat_bubbles/bubbles/bubble_normal.dart';
+import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class ChatWidget extends StatefulWidget {
   final Widget child;
   final String roomId;
-  ChatWidget({required this.child, required this.roomId});
+  ChatWidget({required this.child, required this.roomId, Key? key})
+      : super(key: key);
 
   @override
   State<ChatWidget> createState() => _ChatWidgetState();
@@ -17,9 +21,17 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   List<GameMessages$Subscription$ServerResponse$ChatMessage> chatMessages = [];
 
+  late Timer t;
+  GameMessages$Subscription$ServerResponse$ChatMessage? msg;
+  bool hiddenRecent = true;
+
   @override
   void initState() {
     super.initState();
+    t = Timer(Duration(seconds: 3), () {
+      hiddenRecent = true;
+    });
+
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       GameClient.of(context)!.stream.stream.listen(
         (event) {
@@ -27,9 +39,17 @@ class _ChatWidgetState extends State<ChatWidget> {
               is GameMessages$Subscription$ServerResponse$ChatMessage) {
             var data = event.data?.serverMessages
                 as GameMessages$Subscription$ServerResponse$ChatMessage;
-            setState(() {
-              chatMessages.add(data);
-            });
+            if (mounted) {
+              setState(() {
+                chatMessages.add(data);
+                msg = data;
+                t.cancel();
+                hiddenRecent = false;
+                t = Timer(Duration(seconds: 3), () {
+                  hiddenRecent = true;
+                });
+              });
+            }
           }
         },
       );
@@ -75,7 +95,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                   }
                 });
               },
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     PageRouteBuilder(
@@ -89,7 +109,33 @@ class _ChatWidgetState extends State<ChatWidget> {
                     ),
                   );
                 },
-                child: ChatBubbleWidget(),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
+                  children: [
+                    ChatBubbleWidget(),
+                    if (msg != null)
+                      Positioned(
+                        left: pos.dx > MediaQuery.of(context).size.width / 2
+                            ? null
+                            : 40,
+                        right: pos.dx > MediaQuery.of(context).size.width / 2
+                            ? 50
+                            : null,
+                        child: AnimatedOpacity(
+                          opacity: hiddenRecent ? 0 : 1,
+                          duration: Duration(seconds: 1),
+                          child: Container(
+                            child: BubbleSpecialTwo(
+                              text: msg!.message,
+                              isSender: false,
+                              tail: false,
+                            ),
+                          ),
+                        ),
+                      )
+                  ],
+                ),
               ),
             ),
           );
@@ -125,9 +171,11 @@ class _ChatWindowState extends State<ChatWindow> {
               is GameMessages$Subscription$ServerResponse$ChatMessage) {
             var data = event.data?.serverMessages
                 as GameMessages$Subscription$ServerResponse$ChatMessage;
-            setState(() {
-              chatMessages.add(data);
-            });
+            if (mounted) {
+              setState(() {
+                chatMessages.add(data);
+              });
+            }
           }
         },
       );
@@ -183,13 +231,16 @@ class _ChatWindowState extends State<ChatWindow> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Container(
-                                        margin: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          e.player.name,
-                                          textAlign: TextAlign.left,
+                                      if (e.player.id !=
+                                          GameClient.of(context)!.playerId)
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: 20, right: 20),
+                                          child: Text(
+                                            e.player.name,
+                                            textAlign: TextAlign.left,
+                                          ),
                                         ),
-                                      ),
                                       BubbleNormal(
                                         text: e.message,
                                         isSender: e.player.id ==
