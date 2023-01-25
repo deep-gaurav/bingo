@@ -1,4 +1,4 @@
-git clone -b stable https://github.com/flutter/flutter.git
+git clone https://github.com/flutter/flutter.git
 ./flutter/bin/flutter precache
 
 ./flutter/bin/flutter doctor
