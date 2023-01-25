@@ -1,4 +1,4 @@
-git clone https://github.com/flutter/flutter.git
+git clone --depth 1 --branch 3.3.10 https://github.com/flutter/flutter.git
 ./flutter/bin/flutter precache
 
 ./flutter/bin/flutter doctor
