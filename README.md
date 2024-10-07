@@ -1,4 +1,4 @@
-<p align="center"><a href="https://bingo.ujjawal.co"><img src="web/icons/Icon-192.png" width="160"></a></p>
+<p align="center"><a href="https://github.com/deep-gaurav/bingo"><img src="web/icons/Icon-192.png" width="160"></a></p>
 
 <h2 align="center"><b>Bingo Tingo</b></h2>
 
